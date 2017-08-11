@@ -1,0 +1,28 @@
+{
+  "name": "sanitize-element",
+  "version": "0.0.1",
+  "description": "Element wrapper for the sanitize.js library",
+  "private": true,
+  "authors": [
+    "Junji Shiokawa <junji.shiokawa@gmail.com>"
+  ],
+  "keywords": [
+    "web-components",
+    "polymer",
+    "sanitize",
+    "marked"
+  ],
+  "license": "MIT",
+  "main": "sanitize-element.html",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/howking/sanitize-element.git"
+  },
+  "dependencies": {
+    "marked": "~v1.0.0",
+    "polymer": "Polymer/polymer#^2.0.0"
+  },
+  "devDependencies": {
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
+  }
+}
