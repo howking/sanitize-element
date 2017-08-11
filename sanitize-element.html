@@ -7,28 +7,31 @@ work for [`<marked-element>`](https://github.com/polymerelements/marked-element)
 
 @element sanitize-element
 -->
-
 <dom-module id="sanitize-element">
   <script>
     class SanitizeElement extends Polymer.Element {
       static get is() { return 'sanitize-element' }
       static get properties() { return {
-          /**
-           * custom configuration by JSON String
-           * Note: The params attribute must be double quoted JSON.
-           */
-          config: String,
-          sanitizer: {
-            type: Function,
-            readOnly: true,
-            notify: true,
-            computed: "_sanitizer(config)"
-          }
+        /**
+         * custom configuration by JSON String
+         * Note: The params attribute must be double quoted JSON.
+         */
+        config: String,
+        sanitizer: {
+          type: Function,
+          readOnly: true,
+          notify: true,
+          computed: "_sanitizer(config)"
+        }
       } }
+      /**
+       * Return function of sanitizer for marked.js.
+       *
+       * @config config `JSON String`
+       */
       _sanitizer(config) {
         let sa = new Sanitize(JSON.parse(config))
         let xs = new XMLSerializer()
-        // marked.js:sanitizer get
         return i=>{
           if (i.match(/^<\//)) return i
           let t = document.createElement('div')
