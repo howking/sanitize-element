@@ -5,7 +5,7 @@
 Element wrapper for the [Sanitize.js](https://github.com/gbirke/Sanitize.js) library.
 work for [`<marked-element>`](https://github.com/polymerelements/marked-element).
 
-> Waiting for merge PolymerElements/marked-element#74
+> Waiting for merge [PolymerElements/marked-element#74](https://github.com/PolymerElements/marked-element/pull/74)
 
 ``` html
 <sanitize-element config='{
@@ -15,5 +15,3 @@ work for [`<marked-element>`](https://github.com/polymerelements/marked-element)
   }' sanitizer="{{sanitizer}}"></sanitize-element>
 <marked-element markdown="[[markdown]]" sanitize sanitizer="[[sanitizer]]">
 ```
-
-[`<marked-element>`] need set `sanitize` to true.
