@@ -19,7 +19,7 @@
     "url": "git://github.com/howking/sanitize-element.git"
   },
   "dependencies": {
-    "marked": "~v1.0.0",
+    "sanitize": "gbirke/Sanitize.js#v1.0.0",
     "polymer": "Polymer/polymer#^2.0.0"
   },
   "devDependencies": {
