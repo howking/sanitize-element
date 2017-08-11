@@ -1,32 +1,42 @@
 <link rel="import" href="../polymer/polymer-element.html">
 <link rel="import" href="sanitize-import.html">
 
+<!--
+Element wrapper for the [Sanitize.js](https://github.com/gbirke/Sanitize.js) library.
+work for [`<marked-element>`](https://github.com/polymerelements/marked-element).
+
+@element sanitize-element
+-->
+
 <dom-module id="sanitize-element">
   <script>
     class SanitizeElement extends Polymer.Element {
       static get is() { return 'sanitize-element' }
       static get properties() { return {
-        opt: String,
-        sanitizer: {
-          type: Function,
-          notify: true,
-          computed: "_sanitFunc()"
-        } }
-      }
-      ready(){
-        super.ready()
-        this.sa = new Sanitize(JSON.parse(this.opt))
-        this.xs = new XMLSerializer()
-      }
-      _sanitFunc() {
+          /**
+           * custom configuration by JSON String
+           * Note: The params attribute must be double quoted JSON.
+           */
+          config: String,
+          sanitizer: {
+            type: Function,
+            readOnly: true,
+            notify: true,
+            computed: "_sanitizer(config)"
+          }
+      } }
+      _sanitizer(config) {
+        let sa = new Sanitize(JSON.parse(config))
+        let xs = new XMLSerializer()
+        // marked.js:sanitizer get
         return i=>{
           if (i.match(/^<\//)) return i
           let t = document.createElement('div')
           t.innerHTML=i
-          return this.xs.serializeToString(this.sa.clean_node(t))
-                     .replace(/ xmlns="[^"]+"/,'')
-                     .replace(/<\/[^>]+>$/,'')
-        }        
+          return xs.serializeToString(sa.clean_node(t))
+                   .replace(/ xmlns="[^"]+"/,'')
+                   .replace(/<\/[^>]+>$/,'')
+        }
       }
     }
     customElements.define(SanitizeElement.is, SanitizeElement)
