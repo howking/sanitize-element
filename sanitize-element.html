@@ -9,6 +9,13 @@ work for [`<marked-element>`](https://github.com/polymerelements/marked-element)
 -->
 <dom-module id="sanitize-element">
   <script>
+    /**
+     * `sanitize-element`
+     * Element wrapper for the [Sanitize.js](https://github.com/gbirke/Sanitize.js) library.
+     *
+     * @customElement
+     * @polymer
+     */
     class SanitizeElement extends Polymer.Element {
       static get is() { return 'sanitize-element' }
       static get properties() { return {
@@ -17,6 +24,9 @@ work for [`<marked-element>`](https://github.com/polymerelements/marked-element)
          * Note: The params attribute must be double quoted JSON.
          */
         config: String,
+        /**
+         * Function used for marked.js
+         */
         sanitizer: {
           type: Function,
           readOnly: true,

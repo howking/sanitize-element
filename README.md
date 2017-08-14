@@ -14,4 +14,6 @@ work for [`<marked-element>`](https://github.com/polymerelements/marked-element)
   "protocols":{"a":{"href":["http","https"]}}
   }' sanitizer="{{sanitizer}}"></sanitize-element>
 <marked-element markdown="[[markdown]]" sanitize sanitizer="[[sanitizer]]">
+  <div slot="markdown-html"></div>
+</markd-element>
 ```
