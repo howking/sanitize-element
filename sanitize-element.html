@@ -23,7 +23,7 @@ work for [`<marked-element>`](https://github.com/polymerelements/marked-element)
          * custom configuration by JSON String
          * Note: The params attribute must be double quoted JSON.
          */
-        config: String,
+        config: Object,
         /**
          * Function used for marked.js
          */
@@ -40,7 +40,7 @@ work for [`<marked-element>`](https://github.com/polymerelements/marked-element)
        * @config config `JSON String`
        */
       _sanitizer(config) {
-        let sa = new Sanitize(JSON.parse(config))
+        let sa = new Sanitize(config)
         let xs = new XMLSerializer()
         return i=>{
           if (i.match(/^<\//)) return i
