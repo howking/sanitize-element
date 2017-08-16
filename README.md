@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/howking/sanitize-element.svg?branch=master)](https://travis-ci.org/howking/sanitize-element)
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/howking/sanitize-element)
 ![Polymer2.0](https://img.shields.io/badge/Polymer-2.0-blue.svg)
 ![ES6](https://img.shields.io/badge/es-6-red.svg)
