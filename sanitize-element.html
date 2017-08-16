@@ -2,46 +2,43 @@
 <link rel="import" href="sanitize-import.html">
 
 <!--
-Element wrapper for the [Sanitize.js](https://github.com/gbirke/Sanitize.js) library.
-work for [`<marked-element>`](https://github.com/polymerelements/marked-element).
-
-@element sanitize-element
+Element wrapper for the [Sanitize.js](https://github.com/gbirke/Sanitize.js) library (a whitelist-based HTML sanitizer),
+to use [`<marked-element>`](https://github.com/polymerelements/marked-element).
 -->
 <dom-module id="sanitize-element">
   <script>
-    /**
-     * `sanitize-element`
-     * Element wrapper for the [Sanitize.js](https://github.com/gbirke/Sanitize.js) library.
-     *
-     * @customElement
-     * @polymer
-     */
     class SanitizeElement extends Polymer.Element {
-      static get is() { return 'sanitize-element' }
-      static get properties() { return {
-        /**
-         * custom configuration by JSON String
-         * Note: The params attribute must be double quoted JSON.
-         */
-        config: Object,
-        /**
-         * Function used for marked.js
-         */
-        sanitizer: {
-          type: Function,
-          readOnly: true,
-          notify: true,
-          computed: "_sanitizer(config)"
+      static get is() {
+        return 'sanitize-element'
+      }
+      static get properties() {
+        return {
+          /**
+           * Custom configuration object [parameters](https://github.com/gbirke/Sanitize.js#configuration-object-parameters)
+           */
+          config: {
+            type: Object,
+            value: null
+          },
+          /**
+           * Function used for `<marked-element>`
+           *
+           * witout `config`, sanitize all elements and attributes.
+           */
+          sanitizer: {
+            type: Function,
+            readOnly: true,
+            notify: true,
+            computed: "_sanitizer(config)"
+          }
         }
-      } }
+      }
       /**
-       * Return function of sanitizer for marked.js.
-       *
-       * @config config `JSON String`
+       * Return function of sanitizer for marked-element.
        */
       _sanitizer(config) {
-        let sa = new Sanitize(config)
-        let xs = new XMLSerializer()
+        let sa = new Sanitize(config),
+            xs = new XMLSerializer()
         return i=>{
           if (i.match(/^<\//)) return i
           let t = document.createElement('div')

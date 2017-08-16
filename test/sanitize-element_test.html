@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>sanitize-element test</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../web-component-tester/browser.js"></script>
+
+    <link rel="import" href="../sanitize-element.html">
+  </head>
+  <body>
+
+    <test-fixture id="Default">
+      <template>
+        <sanitize-element></sanitize-element>
+      </template>
+    </test-fixture>
+
+    <test-fixture id="Customized">
+      <template>
+        <sanitize-element config='{
+                                  "elements":["a","img"],
+                                  "attributes":{"__ALL__":["class"], "a":["href","title"], "img":["src"]},
+                                  "protocols":{"a":{"href":["http","https"]}}
+                                  }'></sanitize-element>
+      </template>
+    </test-fixture>
+
+    <script>
+
+      suite('<sanitize-element> has properties', ()=>{
+        let se
+        setup(()=>se=fixture('Default'))
+        test('has config', ()=>expect(se.config).to.equal(null))
+        test('has sanitizer', ()=>expect(se.sanitizer).to.be.an.instanceof(Function))
+      })
+
+      suite('<sanitize-element> no `config` will sanitize all elements, attributes', ()=>{
+        test('sanitized all', ()=>{
+          let sa = fixture('Default').sanitizer
+          expect(sa('<p>')).to.equal('')
+          expect(sa('<p class="p">')).to.equal('')
+          expect(sa('<a href="http://url.com/">')).to.equal('')
+          expect(sa('<a href="javascript:alert(1)')).to.equal('')
+          expect(sa('<a href="http://url.com" onclick="alert(1)">')).to.equal('')
+          expect(sa('<img class="logo" src="logo.gif">')).to.equal('')
+          expect(sa('<img class = \'logo\' src="logo.gif">')).to.equal('')
+        })
+      })
+
+      suite('<sanitize-element> has `config`', ()=>{
+        test('sanitize customized', ()=>{
+          let sa = fixture('Customized').sanitizer
+          expect(sa('<p>')).to.equal('')
+          expect(sa('<p class="p">')).to.equal('')
+          expect(sa('<a href="http://url.com">')).to.equal('<a href="http://url.com">')
+          expect(sa('<a href="javascript:alert(1)">')).to.equal('<a>')
+          expect(sa('<a href="http://url.com" onclick="alert(1)">')).to.equal('<a href="http://url.com">')
+          expect(sa('<img class="logo" src="logo.gif">')).to.equal('<img src="logo.gif" class="logo" />')
+          expect(sa('<img class = \'logo\' src="logo.gif">')).to.equal('<img src="logo.gif" class="logo" />')
+        })
+      })
+
+    </script>
+
+  </body>
+</html>
