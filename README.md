@@ -35,13 +35,15 @@ to use [`<marked-element>`](https://www.webcomponents.org/element/PolymerElement
 ```
 -->
 ```html
+<style>
+  .logo { width: 32px; }
+</style>
+
 <sanitize-element config='{
    "elements": ["img"],
    "attributes":{"img":["class","src"]},
    "protocols":{"img":{"src":["https"]}}
    }' sanitizer="{{sanitizer}}"></sanitize-element>
-
-<style>.logo { width: 32px; }</style>
 
 <marked-element sanitize sanitizer="[[sanitizer]]">
   <div slot="markdown-html"></div>
