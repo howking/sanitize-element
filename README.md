@@ -15,23 +15,25 @@ to use [`<marked-element>`](https://www.webcomponents.org/element/PolymerElement
     <link rel="import" href="sanitize-element.html">
     <script src="https://cdn.rawgit.com/gbirke/Sanitize.js/master/lib/sanitize.js"></script>
     <link rel="import" href="../marked-element/marked-element.html">
-    <next-code-block></next-code-block>
+    <dom-bind>
+      <template is="dom-bind">
+        <next-code-block></next-code-block>
+      </template>
+    </dom-bind>
   </template>
 </custom-element-demo>
 ```
 -->
 ```html
-<dom-bind>
-  <template is="dom-bind">
-    <style>.logo { width: 32px; }</style>
-    <sanitize-element config='{
-                              "elements": ["img"],
-                              "attributes":{"img":["class","src"]},
-                              "protocols":{"img":{"src":["https"]}}
-                              }' sanitizer="{{sanitizer}}"></sanitize-element>
-    <marked-element sanitize sanitizer="[[sanitizer]]">
-      <div slot="markdown-html"></div>
-      <script type="text/markdown">
+<style>.logo { width: 32px; }</style>
+<sanitize-element config='{
+                          "elements": ["img"],
+                          "attributes":{"img":["class","src"]},
+                          "protocols":{"img":{"src":["https"]}}
+                          }' sanitizer="{{sanitizer}}"></sanitize-element>
+<marked-element sanitize sanitizer="[[sanitizer]]">
+  <div slot="markdown-html"></div>
+  <script type="text/markdown">
 Markdown Image link.
 
 ![WebComponents](https://web-components-resources.appspot.com/static/logo.svg)
@@ -44,10 +46,8 @@ Source block is escaped.
 
       <img class="logo" onclick="alert('WebComponents')" src="https://web-components-resources.appspot.com/static/logo.svg">
       
-      </script>
-    </marked-element>
-  </template>
-</dom-bind>
+  </script>
+</marked-element>
 ```
 
 Other config like this.
