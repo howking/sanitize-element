@@ -12,6 +12,16 @@ to use [`<marked-element>`](https://www.webcomponents.org/element/PolymerElement
 ```
 <custom-element-demo>
   <template>
+    <style>
+      pre {
+        padding: 16px;
+        overflow: auto;
+        line-height: 1.20;
+        background-color: #f6f8fa;
+        font-family: monospace;
+        border-radius: 3px;
+      }
+    </style>
     <link rel="import" href="sanitize-element.html">
     <script src="https://cdn.rawgit.com/gbirke/Sanitize.js/master/lib/sanitize.js"></script>
     <link rel="import" href="../marked-element/marked-element.html">
@@ -25,27 +35,31 @@ to use [`<marked-element>`](https://www.webcomponents.org/element/PolymerElement
 ```
 -->
 ```html
-<style>.logo { width: 32px; }</style>
 <sanitize-element config='{
-                          "elements": ["img"],
-                          "attributes":{"img":["class","src"]},
-                          "protocols":{"img":{"src":["https"]}}
-                          }' sanitizer="{{sanitizer}}"></sanitize-element>
+   "elements": ["img"],
+   "attributes":{"img":["class","src"]},
+   "protocols":{"img":{"src":["https"]}}
+   }' sanitizer="{{sanitizer}}"></sanitize-element>
+
 <marked-element sanitize sanitizer="[[sanitizer]]">
   <div slot="markdown-html"></div>
   <script type="text/markdown">
-Markdown Image link.
+Markdown Image link `![image](url)`.
 
-![WebComponents](https://web-components-resources.appspot.com/static/logo.svg)
+![WebComponents](https://www.polymer-project.org/images/logos/p-logo-192.png)
 
-You can set `class` like `<img class="logo">` and remove other attributes.
+You can set `class` like `<img class="logo">` and remove other attributes (e.g. onclick).
 
-<img class="logo" onclick="alert('WebComponents')" src="https://web-components-resources.appspot.com/static/logo.svg">
+<img class="logo"
+     src="https://www.polymer-project.org/images/logos/p-logo-192.png"
+     onclick="alert('WebComponents')">
 
 Source block is escaped.
 
-      <img class="logo" onclick="alert('WebComponents')" src="https://web-components-resources.appspot.com/static/logo.svg">
-      
+      <img class="logo"
+           src="https://www.polymer-project.org/images/logos/p-logo-192.png"
+           onclick="alert('WebComponents')">
+
   </script>
 </marked-element>
 ```
@@ -58,6 +72,7 @@ Other config like this.
   "attributes":{"__ALL__":["class"], "a":["href","title"], "img":["src"]},
   "protocols":{"a":{"href":["http","https"]}}
   }' sanitizer="{{sanitizer}}"></sanitize-element>
+
 <marked-element markdown="[[markdown]]" sanitize sanitizer="[[sanitizer]]">
   <div slot="markdown-html"></div>
 </markd-element>
