@@ -14,7 +14,6 @@ to use [`<marked-element>`](https://github.com/polymerelements/marked-element).
   <template>
     <script src="../webcomponentsjs/webcomponents-lite.js"></script>
     <link rel="import" href="../marked-element/marked-element.html">
-    <!-- for demo, to load external library -->
     <script src="https://cdn.rawgit.com/gbirke/Sanitize.js/master/lib/sanitize.js"></script>
     <link rel="import" href="sanitize-element.html">
     <dom-bind>
