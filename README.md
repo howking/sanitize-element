@@ -50,18 +50,18 @@ to use [`<marked-element>`](https://www.webcomponents.org/element/PolymerElement
   <script type="text/markdown">
 Markdown Image link `![image](url)`.
 
-![WebComponents](https://www.polymer-project.org/images/logos/p-logo-192.png)
+![WebComponents](https://web-components-resources.appspot.com/static/logo.svg)
 
 You can set `class` like `<img class="logo">` and remove other attributes (e.g. onclick).
 
 <img class="logo"
-     src="https://www.polymer-project.org/images/logos/p-logo-192.png"
+     src="https://web-components-resources.appspot.com/static/logo.svg"
      onclick="alert('WebComponents')">
 
 Source block is escaped.
 
       <img class="logo"
-           src="https://www.polymer-project.org/images/logos/p-logo-192.png"
+           src="https://web-components-resources.appspot.com/static/logo.svg"
            onclick="alert('WebComponents')">
 
   </script>
