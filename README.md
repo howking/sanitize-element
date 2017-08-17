@@ -6,27 +6,32 @@
 # &lt;sanitize-element&gt;
 
 Element wrapper for the [Sanitize.js](https://github.com/gbirke/Sanitize.js) library (a whitelist-based HTML sanitizer),
-to use [`<marked-element>`](https://github.com/polymerelements/marked-element).
+to use [`<marked-element>`](https://www.webcomponents.org/element/PolymerElements/marked-element).
 
 <!--
 ```
 <custom-element-demo>
   <template>
-    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="../marked-element/marked-element.html">
-    <script src="https://cdn.rawgit.com/gbirke/Sanitize.js/master/lib/sanitize.js"></script>
     <link rel="import" href="sanitize-element.html">
-    <dom-bind>
-      <template is="dom-bind">
-        <style>.logo { width: 32px; }</style>
-        <sanitize-element config='{
-                                   "elements": ["img"],
-                                   "attributes":{"img":["class","src"]},
-                                   "protocols":{"img":{"src":["https"]}}
-                                   }' sanitizer="{{sanitizer}}"></sanitize-element>
-        <marked-element sanitize sanitizer="[[sanitizer]]">
-          <div slot="markdown-html"></div>
-          <script type="text/markdown">
+    <script src="https://cdn.rawgit.com/gbirke/Sanitize.js/master/lib/sanitize.js"></script>
+    <link rel="import" href="../marked-element/marked-element.html">
+    <next-code-block></next-code-block>
+  </template>
+</custom-element-demo>
+```
+-->
+```html
+<dom-bind>
+  <template is="dom-bind">
+    <style>.logo { width: 32px; }</style>
+    <sanitize-element config='{
+                              "elements": ["img"],
+                              "attributes":{"img":["class","src"]},
+                              "protocols":{"img":{"src":["https"]}}
+                              }' sanitizer="{{sanitizer}}"></sanitize-element>
+    <marked-element sanitize sanitizer="[[sanitizer]]">
+      <div slot="markdown-html"></div>
+      <script type="text/markdown">
 Markdown Image link.
 
 ![WebComponents](https://web-components-resources.appspot.com/static/logo.svg)
@@ -37,17 +42,15 @@ You can set `class` like `<img class="logo">` and remove other attributes.
 
 Source block is escaped.
 
-```
-<img class="logo" onclick="alert('WebComponents')" src="https://web-components-resources.appspot.com/static/logo.svg">
-```
-          </script>
-        </marked-element>
-      </template>
-    </dom-bind>
+      <img class="logo" onclick="alert('WebComponents')" src="https://web-components-resources.appspot.com/static/logo.svg">
+      
+      </script>
+    </marked-element>
   </template>
-</custom-element-demo>
+</dom-bind>
 ```
--->
+
+Other config like this.
 
 ``` html
 <sanitize-element config='{
