@@ -38,6 +38,7 @@ You can set `class` like `<img class="logo">` and remove other attributes.
 Source block is escaped.
 
      <img class="logo" onclick="alert('WebComponents')" src="https://web-components-resources.appspot.com/static/logo.svg">
+
           </script>
         </marked-element>
       </template>
