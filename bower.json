@@ -1,6 +1,6 @@
 {
   "name": "sanitize-element",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Element wrapper for the sanitize.js library",
   "private": true,
   "authors": [
