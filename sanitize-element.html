@@ -40,12 +40,15 @@ to use [`<marked-element>`](https://github.com/polymerelements/marked-element).
         let sa = new Sanitize(config),
             xs = new XMLSerializer()
         return i=>{
-          if (i.match(/^<\//)) return i
-          let t = document.createElement('div')
-          t.innerHTML=i
-          return xs.serializeToString(sa.clean_node(t))
+          let isEnd = i.match(/^<\//),
+              start = isEnd ? i.replace(/^<\//,'<') : i,
+              tmp = document.createElement('div'),
+              sani = ''
+          tmp.innerHTML = start
+          sani = xs.serializeToString(sa.clean_node(tmp))
                    .replace(/ xmlns="[^"]+"/,'')
                    .replace(/<\/[^>]+>$/,'')
+          return sani === '' ? '' : isEnd ? i : sani
         }
       }
     }
