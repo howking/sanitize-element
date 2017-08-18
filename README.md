@@ -8,6 +8,8 @@
 Element wrapper for the [Sanitize.js](https://github.com/gbirke/Sanitize.js) library (a whitelist-based HTML sanitizer),
 to use [`<marked-element>`](https://www.webcomponents.org/element/PolymerElements/marked-element).
 
+## Usage
+
 <!--
 ```
 <custom-element-demo>
@@ -83,3 +85,21 @@ Other config like this.
 ```
 
 Note: The `config` attribute must be double quoted JSON.
+
+## Install the Polymer-CLI
+
+First, make sure you have the [Polymer CLI](https://www.npmjs.com/package/polymer-cli) installed. Then run `polymer serve` to serve your element locally.
+
+## Viewing Your Element
+
+```
+$ polymer serve
+```
+
+## Running Tests
+
+```
+$ polymer test
+```
+
+Your application is already set up to be tested via [web-component-tester](https://github.com/Polymer/web-component-tester). Run `polymer test` to run your application's test suite locally.
