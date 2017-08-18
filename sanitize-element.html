@@ -37,18 +37,16 @@ to use [`<marked-element>`](https://github.com/polymerelements/marked-element).
        * Return function of sanitizer for marked-element.
        */
       _sanitizer(config) {
-        let sa = new Sanitize(config),
-            xs = new XMLSerializer()
+        const sa = new Sanitize(config)
         return i=>{
-          let isEnd = i.match(/^<\//),
-              start = isEnd ? i.replace(/^<\//,'<') : i,
-              tmp = document.createElement('div'),
-              sani = ''
-          tmp.innerHTML = start
-          sani = xs.serializeToString(sa.clean_node(tmp))
-                   .replace(/ xmlns="[^"]+"/,'')
-                   .replace(/<\/[^>]+>$/,'')
-          return sani === '' ? '' : isEnd ? i : sani
+          const isEnd = i.match(/^<\//),
+                start = isEnd ? i.replace(/^<\//,'<') : i,
+                temp = document.createElement('div')
+          temp.innerHTML = start
+          const clean = sa.clean_node(temp)
+          return clean.firstElementChild ?
+                 isEnd ? i : clean.firstElementChild.outerHTML.replace(/<\/[^>]+>$/,'')
+                 : ''
         }
       }
     }
