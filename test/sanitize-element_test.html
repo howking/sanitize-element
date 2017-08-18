@@ -81,8 +81,8 @@
           expect(sa('<a href="http://url.com">')).to.equal('<a href="http://url.com">')
           expect(sa('<a href="javascript:alert(1)">')).to.equal('<a>')
           expect(sa('<a href="http://url.com" onclick="alert(1)">')).to.equal('<a href="http://url.com">')
-          expect(sa('<img class="logo" src="logo.gif">')).to.equal('<img src="logo.gif" class="logo" />')
-          expect(sa('<img class = \'logo\' src="logo.gif">')).to.equal('<img src="logo.gif" class="logo" />')
+          expect(sa('<img class="logo" src="logo.gif">')).to.equal('<img src="logo.gif" class="logo">')
+          expect(sa('<img class = \'logo\' src="logo.gif">')).to.equal('<img src="logo.gif" class="logo">')
         })
       })
 
